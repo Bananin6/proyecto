@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de privacidad y condiciones de uso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_prueba.css') }}"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Política de privacidad y condiciones de uso</h1>
+        <p>
+            <strong>1. Privacidad y confidencialidad:</strong><br>
+            Todos los datos personales proporcionados por los usuarios se manejarán con estricta confidencialidad
+        </p>
+        <p>
+            <strong>2. Uso aceptable:</strong><br>
+            El intercambio de libros en nuestra plataforma está destinado exclusivamente a libros que no infrinjan derechos de autor
+        </p>
+        <p>
+            <strong>3. Contenido permitido:</strong><br>
+            Se permite el intercambio de libros que cumplan con las siguientes condiciones: 
+            El autor o titular de los derechos ha otorgado permiso expreso para compartir el libro en la plataforma.
+            El usuario es el titular legítimo de los derechos de autor del libro.
+            El libro está en dominio público o cuenta con licencias que permiten su libre distribución y uso.
+        </p>
+        <p>
+            <strong>4. Responsabilidad del usuario:</strong><br>
+            Los usuarios son responsables de la veracidad y legalidad del contenido que comparten en la plataforma.
+        </p>
+        <p>
+            <strong>5. Modificaciones y actualizaciones:</strong><br>
+            Nos reservamos el derecho de modificar o actualizar esta política de privacidad y condiciones de uso en cualquier momento.
+        </p>
+        <a href="{{url_for('registro')}}" class="button">Regresar</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+        
+    </head>
+<body style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 14pt;">
+  
+<div id="messages" style="margin: 0% auto; width: 60%; text-align: left; min-height: 300px;">
+
+</div>
+
+ {{ email }}
+ <input type="text" id="message" placeholder="Escribe tu mensaje aquí">
+    <button id="sendBtn">Enviar</button>
+    <ul id="messages"></ul>
+    <script>
+        var socket = io.connect("http://127.0.0.1:5000");
+
+        $('#sendBtn').on('click', function(){
+            var message = $('#message').val();
+            if (message.trim() !== '') {
+                socket.send('{{ email }}: ' + $('#message').val());
+                $('#message').val('');
+            }
+        });
+
+        socket.on('message', function(msg) {
+            $('#messages').append($('<li>').text(msg));
+        });
+    </script><div class="text-center">
+    <a href="/pagina_principal">
+    <button type="submit" class="btn btn-success">Salir</button>
+</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="avatar">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('intercambiar_libro') }}" class="button">intercambiar libro</a></li>
+            <li><a href="{{ url_for('configuracion') }}" class="button">configuracion</a></li>
+            <li><a href="{{ url_for('biblioteca') }}" class="button">biblioteca</a></li>
+            <li><a href="{{ url_for('chat') }}">opinion</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Catálogo de Libros</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="{{ url_for('buscar_libros') }}" method="GET">
+            <input type="text" name="query" placeholder="Buscar por título, autor o clasificación">
+            <button type="submit">Buscar</button>
+        </form>
+        <ul>
+            {% for libro in libros %}
+                <li>{{ libro.titulo }} - {{ libro.autor }} - {{ libro.clasificacion }}
+                    {% if libro.token %}
+                        <form action="{{ url_for('validar_token_descarga', token_descarga=libro.token) }}" method="POST">
+                            <label for="token">Ingresa tu token de descarga:</label>
+                            <input type="text" id="token" name="token" required>
+                            <button type="submit">Descargar</button>
+                        </form>
+                    {% else %}
+                        <span>No disponible para descarga</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

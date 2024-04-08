@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>biblioteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css' )}}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="avatar">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('intercambiar_libro' )}}">intercambiar libro</a></li>
+            <li><a href="{{ url_for('configuracion' )}}">configuracion</a></li>
+            <li><a href="{{ url_for('biblioteca' )}}">biblioteca</a></li>
+        </ul>
+    </div>
+    <h1>Biblioteca</h1>
+    <div class="content">
+        <h1>Libros con su codigo para su descarga</h1>
+
+        
+
+        
+        <ul>
+            {% for libro in libros %}
+                <li>{{ libro.titulo }} - {{ libro.autor }} - {{ libro.clasificacion }} - {{ libro.token }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p><a href="{{ url_for('pagina_principal' )}}" class="button">Regresar</a></p>
+</body>
+</html>

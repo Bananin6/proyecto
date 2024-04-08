@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_prueba.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+        <h1 class="title">Iniciar Sesión</h1>
+        <form method="post" action="{{ url_for('login') }}" class="form">
+            <label for="correo">Correo:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="Iniciar Sesión" class="button">
+        </form>
+        <h2>¿No tienes cuenta?</h2>
+        <a href="{{ url_for('registro') }}" class="button">Registrate</a>
+        <h2>¿Olvidaste tu contraseña?</h2>
+        <a href="{{ url_for('recuperar') }}" class="button">Recupera tu contraseña</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de búsqueda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css' )}}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="avatar">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Avatar">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('intercambiar_libro' )}}">Intercambiar libro</a></li>
+            <li><a href="{{ url_for('configuracion' )}}">Configuración</a></li>
+            <li><a href="{{ url_for('biblioteca' )}}">Biblioteca</a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <h1>Resultados de búsqueda para "{{ query }}"</h1>
+
+        <ul class="libros-lista">
+            {% for libro in libros %}
+                <li class="libro-item">
+                    {{ libro.titulo }} - {{ libro.autor }} - {{ libro.clasificacion }}
+                    {% if libro.token %}
+                    <form action="{{ url_for('validar_token_descarga', token_descarga=libro.token)}}" method="post">
+                        <label for="token">Ingresa tu token de descarga:</label>
+                        <input type="text" id="token" name="token" required>
+                        <button type="submit">Descargar</button> 
+                    </form>
+                    {% else %}
+                    <span class="no-disponible">No disponible</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <p><a href="{{ url_for('pagina_principal') }}">Regresar</a></p>
+    </div>
+</body>
+</html>

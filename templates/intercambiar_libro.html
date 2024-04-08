@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercambiar Libro</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_intecambiar.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Intercambiar Libro</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="/intercambiar_libro" method="POST" enctype="multipart/form-data">
+            <label for="titulo">Nombre:</label>
+            <input type="text" id="titulo" name="titulo" required><br>
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor" required><br>
+            <label for="clasificacion">Clasificación (Dewey):</label>
+            <select id="clasificacion" name="clasificacion" required>
+                <option value="">Selecciona la clasificación</option>
+                <option value="000">000-(Ciencias de la Computación, Información y Obras Generales.)</option>
+                <option value="100">100-(Filosofía y Psicología.)</option>
+                <option value="200">200-(Religión, Teología.)</option>
+                <option value="300">300-( Ciencias Sociales.)</option>
+                <option value="400">400-(Lenguas.)</option>
+                <option value="500">500-(Ciencias Básicas.)</option>
+                <option value="600">600-(Tecnología y Ciencias Aplicadas.)</option>
+                <option value="700">700-(Artes y recreación.)</option>
+                <option value="800">800-(Literatura.)</option>
+                <option value="900">900-(Historia y Geografía)</option>
+            </select><br>
+            <label for="archivo">Archivo PDF:</label>
+            <input type="file" id="archivo" name="archivo" accept=".pdf" required><br>
+            <button type="submit">Intercambiar</button>
+        </form>
+        <p><a href="{{ url_for('pagina_principal') }}" class="button">Regresar</a></p>
+        {% if token %}
+            <p>Ya puedes ingresar a la biblioteca para conseguir los códigos para descargar libros.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

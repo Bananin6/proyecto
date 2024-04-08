@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_prueba.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+        <h1 class="title">Registro de Usuario</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="post" action="{{ url_for('registro') }}" class="form">
+            <label for="correo">Correo:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <label for="copassword">Confirmar contraseña</label>
+            <input type="password" id="copassword" name="copassword" required>
+            <br>
+            <label for="pregunta_seguridad">Pregunta de seguridad</label>
+            <select id="pregunta_seguridad" name="pregunta_seguridad" required>
+                <option value="">Selecciona una pregunta</option>
+                <option value="¿Cual es el nombre de tu primer mascota">¿Cual es el nombre de tu primer mascota</option>
+                <option value="¿Cual es tu color favorito?">¿Cual es tu color favorito?</option>
+                <option value="¿Cual es tu numero de la suerte?">¿Cual es tu numero de la suerte?</option>
+            </select>
+            <br>
+            <label for="respuesta_seguridad">Respuesta de seguridad</label>
+            <input type="text" id="respuesta_seguridad" name="respuesta_seguridad" required>
+            <br>
+            <label for="politica_privacidad">
+                <input type="checkbox" id="politica_privacidad" name="politica_privacidad" required>
+                Acepto la <a href="{{url_for('politica')}}">política de privacidad</a>
+            </label>
+            <br>
+            <button type="submit" class="button">Registrarse</button>
+        </form>
+        <p><a href="{{ url_for('index') }}" class="button">Regresar</a></p>
+    </div>
+</body>
+</html>
